@@ -30,7 +30,7 @@ export function Hero() {
             nativeButton={false}
             render={<a href={`mailto:${profile.email}`} />}
           >
-            <Mail /> 이메일
+            <Mail /> 이메일ㅇ
           </Button>
           <Button
             variant="outline"
