@@ -1,5 +1,5 @@
 export const profile = {
-  siteUrl: "https://kimjinhyuk.com",
+  siteUrl: "https://portfolio-hyukskees-projects.vercel.app/",
   name: "김진혁",
   role: "Frontend Engineer",
   tagline: "지속 가능성과 원인 중심 사고로 복잡한 서비스를 단순하게 만드는 개발자",
