@@ -94,7 +94,10 @@ export function ChatInterface({ className }: { className?: string }) {
 
           {error && (
             <p className="rounded-lg bg-destructive/10 px-3 py-2 text-xs text-destructive">
-              문제가 발생했어요. 잠시 후 다시 시도해주세요.
+              {error.message?.includes("quota") ||
+              error.message?.includes("insufficient_quota")
+                ? "OpenAI API 사용 한도가 초과되었습니다. 결제/크레딧 설정 후 API 키를 갱신해주세요."
+                : "문제가 발생했어요. 잠시 후 다시 시도해주세요."}
             </p>
           )}
         </div>
