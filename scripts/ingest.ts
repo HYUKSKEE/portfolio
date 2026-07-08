@@ -9,9 +9,14 @@
  * content/ 폴더의 내용을 수정할 때마다 다시 실행해야
  * 챗봇이 최신 정보를 참고합니다.
  */
-import "dotenv/config";
-import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+import { config } from "dotenv";
 import path from "node:path";
+
+// Next.js와 동일하게 .env.local을 우선적으로 읽습니다 (dotenv/config 기본값은 .env만 읽음).
+config({ path: path.resolve(process.cwd(), ".env.local") });
+config();
+
+import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { embedMany } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { chunkMarkdown } from "../lib/rag/chunk";
