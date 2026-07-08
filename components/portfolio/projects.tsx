@@ -20,7 +20,9 @@ export function Projects() {
           <Card key={project.slug}>
             <CardHeader>
               <CardTitle>{project.title}</CardTitle>
-              <CardDescription>{project.description}</CardDescription>
+              <CardDescription>
+                {[project.role, project.description].filter(Boolean).join(" · ")}
+              </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
               {project.stack.length > 0 && (

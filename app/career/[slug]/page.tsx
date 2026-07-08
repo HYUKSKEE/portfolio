@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { ProjectDetail } from "@/components/portfolio/project-detail";
-import { getAllProjects, getProjectBySlug } from "@/lib/projects";
+import { ExperienceDetail } from "@/components/portfolio/experience-detail";
+import {
+  getAllExperiences,
+  getExperienceBySlug,
+} from "@/lib/experience";
 import { profile } from "@/data/profile";
 
 export function generateStaticParams() {
-  return getAllProjects().map((project) => ({ slug: project.slug }));
+  return getAllExperiences().map((job) => ({ slug: job.slug }));
 }
 
 export async function generateMetadata({
@@ -16,37 +19,37 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const job = getExperienceBySlug(slug);
 
-  if (!project) return {};
+  if (!job) return {};
 
   return {
-    title: `${project.title} | ${profile.name}`,
-    description: project.description,
+    title: `${job.company} | ${profile.name}`,
+    description: `${job.role} · ${job.period}`,
   };
 }
 
-export default async function ProjectDetailPage({
+export default async function CareerDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const job = getExperienceBySlug(slug);
 
-  if (!project) notFound();
+  if (!job) notFound();
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10 lg:px-8">
       <Link
-        href="/project"
+        href="/career"
         className="inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="size-4" />
-        모든 프로젝트
+        모든 경력
       </Link>
 
-      <ProjectDetail project={project} />
+      <ExperienceDetail job={job} />
     </div>
   );
 }
