@@ -39,13 +39,17 @@ export function ChatMessage({ message }: { message: UIMessage }) {
         className={cn(
           "max-w-[80%] rounded-2xl px-3.5 py-2 text-sm leading-relaxed break-words",
           isUser
-            ? "rounded-tr-sm bg-primary text-primary-foreground"
+            ? "rounded-tr-sm bg-primary font-bold text-white"
             : "rounded-tl-sm bg-muted text-foreground"
         )}
       >
-        <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-headings:my-1.5">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
-        </div>
+        {isUser ? (
+          text
+        ) : (
+          <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-headings:my-1.5">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+          </div>
+        )}
       </div>
     </div>
   );
