@@ -49,56 +49,59 @@ export default async function ProjectDetailPage({
       </Link>
 
       <header className="flex flex-col gap-3">
-        <p className="text-sm text-muted-foreground">{project.period}</p>
+        {project.period && (
+          <p className="text-sm text-muted-foreground">{project.period}</p>
+        )}
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           {project.title}
         </h1>
-        <p className="text-sm text-muted-foreground">{project.role}</p>
-        <div className="flex flex-wrap gap-1.5 pt-1">
-          {project.stack.map((tech) => (
-            <Badge key={tech} variant="outline">
-              {tech}
-            </Badge>
-          ))}
-        </div>
-        <div className="flex gap-2 pt-2">
-          <Button
-            size="sm"
-            nativeButton={false}
-            render={<a href={project.link} target="_blank" rel="noreferrer" />}
-          >
-            <ExternalLink /> 데모 보기
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            nativeButton={false}
-            render={<a href={project.github} target="_blank" rel="noreferrer" />}
-          >
-            <GithubIcon className="size-4" /> 코드 보기
-          </Button>
-        </div>
+        <p className="text-sm text-muted-foreground">{project.description}</p>
+        {project.stack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {project.stack.map((tech) => (
+              <Badge key={tech} variant="outline">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        )}
+        {(project.link || project.github) && (
+          <div className="flex gap-2 pt-2">
+            {project.link && (
+              <Button
+                size="sm"
+                nativeButton={false}
+                render={<a href={project.link} target="_blank" rel="noreferrer" />}
+              >
+                <ExternalLink /> 데모 보기
+              </Button>
+            )}
+            {project.github && (
+              <Button
+                variant="outline"
+                size="sm"
+                nativeButton={false}
+                render={<a href={project.github} target="_blank" rel="noreferrer" />}
+              >
+                <GithubIcon className="size-4" /> 코드 보기
+              </Button>
+            )}
+          </div>
+        )}
       </header>
 
-      <section className="flex flex-col gap-6 border-t pt-6">
-        <div>
-          <h2 className="mb-2 text-sm font-semibold text-muted-foreground">
-            문제
-          </h2>
-          <p className="text-base leading-relaxed">{project.problem}</p>
-        </div>
-        <div>
-          <h2 className="mb-2 text-sm font-semibold text-muted-foreground">
-            해결
-          </h2>
-          <p className="text-base leading-relaxed">{project.solution}</p>
-        </div>
-        <div>
-          <h2 className="mb-2 text-sm font-semibold text-muted-foreground">
-            결과
-          </h2>
-          <p className="text-base leading-relaxed">{project.result}</p>
-        </div>
+      <section className="flex flex-col gap-2 border-t pt-6">
+        <h2 className="mb-1 text-sm font-semibold text-muted-foreground">
+          담당 업무
+        </h2>
+        <ul className="flex flex-col gap-1.5 text-base">
+          {project.duties.map((duty) => (
+            <li key={duty} className="flex gap-2">
+              <span className="text-primary">·</span>
+              {duty}
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );

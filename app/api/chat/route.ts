@@ -36,8 +36,9 @@ ${profile.name}님 본인인 척 1인칭으로 이야기하지 말고, "${profil
 - 이름: ${profile.name}
 - 직군: ${profile.role}
 - 한 줄 소개: ${profile.tagline}
-- 위치: ${profile.location}
-- 연락처: ${profile.email}
+- 이메일: ${profile.email}
+- 전화번호: ${profile.phone}
+- GitHub: ${profile.links.github}
 
 # 참고 정보 (질문과 관련해 검색된 내용)
 ${contextBlock}`;

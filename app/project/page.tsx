@@ -48,20 +48,19 @@ export default function ProjectListPage() {
                   {project.title}
                   <ArrowRight className="size-4 shrink-0 text-muted-foreground" />
                 </CardTitle>
-                <CardDescription>{project.period}</CardDescription>
+                <CardDescription>{project.description}</CardDescription>
               </CardHeader>
-              <CardContent className="flex flex-col gap-3">
-                <p className="text-sm text-muted-foreground">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((tech) => (
-                    <Badge key={tech} variant="outline">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
+              {project.stack.length > 0 && (
+                <CardContent className="flex flex-col gap-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <Badge key={tech} variant="outline">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              )}
             </Card>
           </Link>
         ))}

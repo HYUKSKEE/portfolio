@@ -22,6 +22,9 @@
 
 # misc
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 *.pem
 
 # debug
@@ -29,6 +32,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -40,3 +44,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editors / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# secrets / credentials
+*.key
+*.crt
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+*.local.json
+
+# RAG 임베딩 캐시 (콘텐츠에서 npm run ingest로 재생성되는 파생 산출물)
+# 커밋해두면 배포 시 재생성 없이 바로 사용 가능하므로 원할 경우 주석 처리해서 추적하세요.
+# data/embeddings.json

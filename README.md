@@ -10,6 +10,7 @@
 | 언어 | TypeScript | 안정성 |
 | 스타일 | Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com) (base-ui 기반) | 빠른 개발, 접근성 있는 컴포넌트 |
 | 애니메이션 | Framer Motion | 은은한 등장 애니메이션 |
+| 폰트 / 컬러 | [Pretendard](https://github.com/orioncactus/pretendard) (Variable, `next/font/local`) + 화이트 배경 · 블랙 텍스트 · `#007AFF` 포인트 컬러 | 가독성 높은 한글 폰트, 절제된 흑백 톤에 포인트 컬러를 최소한으로 사용 |
 | AI | [Vercel AI SDK](https://ai-sdk.dev) (`ai`, `@ai-sdk/react`, `@ai-sdk/openai`) + OpenAI (`gpt-4o-mini`) | 스트리밍 응답을 위한 표준 SDK, `useChat` 훅으로 프론트 구현이 매우 간단함 |
 | 지식 검색 (RAG) | 자체 구현 임베딩 검색 (OpenAI `text-embedding-3-small` + 코사인 유사도) | 별도 벡터 DB 없이 `content/*.md` 기반으로 가볍게 동작. 문서량이 많아지면 Upstash Vector 등으로 교체 가능 |
 | 배포 | Vercel | Next.js와 100% 호환, 무료 티어로 충분 |
@@ -21,7 +22,7 @@ app/
   page.tsx              # 포트폴리오 메인 페이지 (좌: 콘텐츠, 우: 챗봇)
   api/chat/route.ts     # 챗봇 스트리밍 API (RAG 컨텍스트 주입 + OpenAI 호출)
 components/
-  portfolio/            # Hero, Skills, Projects, Experience, Footer
+  portfolio/            # Hero, About, Skills, Experience, CaseStudy, Projects, Education, Interest, Footer
   chat/                 # ChatWidget(반응형 배치), ChatInterface(대화 UI), ChatMessage
   ui/                   # shadcn/ui 컴포넌트
 content/                # 챗봇이 참고하는 "지식 베이스" (마크다운, 자유 서술)
@@ -37,7 +38,7 @@ scripts/ingest.ts       # content/*.md → 임베딩 생성 스크립트
 - **`data/profile.ts`**: 화면에 예쁘게 렌더링할 "요약" 정보 (카드, 뱃지 등 UI용).
 - **`content/*.md`**: 챗봇이 답변할 때 참고하는 "상세한 서술형" 정보. 이력서처럼 구체적으로 적을수록 챗봇 답변 품질이 좋아집니다.
 
-두 곳 모두 실제 본인 정보로 꼭 교체하세요. 현재는 예시(placeholder) 데이터가 들어있습니다.
+현재 `data/profile.ts`와 `content/*.md`에는 김진혁님의 실제 이력서 내용이 반영되어 있습니다. 내용이 바뀌면 두 곳을 함께 업데이트하세요.
 
 ## 로컬 개발 시작하기
 
@@ -57,7 +58,7 @@ npm run dev
 
 ### 2. 챗봇 지식 베이스 생성 (임베딩)
 
-`content/` 폴더를 수정할 때마다 아래 명령으로 임베딩을 다시 생성해야 챗봇이 최신 내용을 압니다.
+`content/` 폴더를 수정할 때마다 아래 명령으로 임베딩을 다시 생성해야 챗봇이 최신 내용을 압니다. (현재 `data/embeddings.json`은 비어있는 상태이므로, `OPENAI_API_KEY`를 설정한 뒤 최초 1회 실행이 필요합니다.)
 
 ```bash
 npm run ingest

@@ -2,7 +2,8 @@ import type { UIMessage } from "ai";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ProfileAvatar } from "@/components/portfolio/profile-avatar";
 import { Bot, User } from "lucide-react";
 import { profile } from "@/data/profile";
 
@@ -20,20 +21,20 @@ export function ChatMessage({ message }: { message: UIMessage }) {
 
   return (
     <div className={cn("flex items-start gap-2.5", isUser && "flex-row-reverse")}>
-      <Avatar className="size-7 shrink-0 border">
-        {isUser ? (
+      {isUser ? (
+        <Avatar className="size-7 shrink-0 border">
           <AvatarFallback>
             <User className="size-3.5" />
           </AvatarFallback>
-        ) : (
-          <>
-            <AvatarImage src={profile.avatarUrl} alt={profile.name} />
-            <AvatarFallback>
-              <Bot className="size-3.5" />
-            </AvatarFallback>
-          </>
-        )}
-      </Avatar>
+        </Avatar>
+      ) : (
+        <ProfileAvatar
+          src={profile.avatarUrl}
+          alt={profile.name}
+          fallback={<Bot className="size-3.5" />}
+          className="size-7 shrink-0 border"
+        />
+      )}
       <div
         className={cn(
           "max-w-[80%] rounded-2xl px-3.5 py-2 text-sm leading-relaxed break-words",
