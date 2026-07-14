@@ -32,7 +32,7 @@
 
 결과: 빌드 결과물 용량 약 60% 감소, 배포 시간 단축, CI/CD 효율 향상.
 
-## Featured Case Study - 결제 시스템 구조 개선
+## 크래프타 개선 경험 - 결제 시스템 구조 개선
 
 기존 구조: PaymentPage 하위에 Product, Coupon, Delivery, Point, PG가 각각 존재했고, 각 화면에서 결제 계산 로직을 개별적으로 수행했습니다.
 

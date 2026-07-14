@@ -105,6 +105,49 @@ export function ExperienceDetail({ job }: { job: Experience }) {
           </div>
         ))}
       </section>
+
+      {job.improvements.length > 0 && (
+        <section className="flex flex-col gap-4 border-t pt-6">
+          <h2 className="text-sm font-semibold text-muted-foreground">
+            개선 경험
+          </h2>
+          {job.improvements.map((item) => (
+            <div key={item.title} className="flex flex-col gap-4">
+              <p className="text-sm font-semibold sm:text-base">{item.title}</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <p className="mb-2 text-xs font-medium text-muted-foreground">
+                    기존 구조
+                  </p>
+                  <pre className="overflow-x-auto rounded-xl border bg-muted/40 p-4 font-mono text-xs leading-relaxed whitespace-pre">
+                    {item.before}
+                  </pre>
+                </div>
+                <div>
+                  <p className="mb-2 text-xs font-medium text-muted-foreground">
+                    개선 구조
+                  </p>
+                  <pre className="overflow-x-auto rounded-xl border border-primary/30 bg-primary/5 p-4 font-mono text-xs leading-relaxed whitespace-pre">
+                    {item.after}
+                  </pre>
+                </div>
+              </div>
+              <div>
+                <p className="mb-2 text-xs font-medium text-muted-foreground">
+                  개선 효과
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {item.effects.map((effect) => (
+                    <Badge key={effect} variant="outline">
+                      {effect}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
     </div>
   );
 }

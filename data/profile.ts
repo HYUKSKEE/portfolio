@@ -156,6 +156,32 @@ export const profile = {
           ],
         },
       ],
+      improvements: [
+        {
+          title: "결제 시스템 구조 개선",
+          before: `PaymentPage
+├── Product
+├── Coupon
+├── Delivery
+├── Point
+└── PG
+
+각 화면에서 결제 계산 로직 수행`,
+          after: `PaymentPage
+└── PaymentService
+    ├── CouponCalculator
+    ├── PointCalculator
+    ├── DeliveryCalculator
+    └── OrderValidator`,
+          effects: [
+            "책임 분리",
+            "재사용성 증가",
+            "테스트 용이성 향상",
+            "디버깅 범위 축소",
+            "신규 기능 추가 비용 감소",
+          ],
+        },
+      ],
     },
     {
       slug: "biginsight",
@@ -195,33 +221,9 @@ export const profile = {
           ],
         },
       ],
+      improvements: [],
     },
   ],
-
-  caseStudy: {
-    title: "결제 시스템 구조 개선",
-    before: `PaymentPage
-├── Product
-├── Coupon
-├── Delivery
-├── Point
-└── PG
-
-각 화면에서 결제 계산 로직 수행`,
-    after: `PaymentPage
-└── PaymentService
-    ├── CouponCalculator
-    ├── PointCalculator
-    ├── DeliveryCalculator
-    └── OrderValidator`,
-    effects: [
-      "책임 분리",
-      "재사용성 증가",
-      "테스트 용이성 향상",
-      "디버깅 범위 축소",
-      "신규 기능 추가 비용 감소",
-    ],
-  },
 
   projects: [
     {
