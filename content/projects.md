@@ -65,6 +65,35 @@ docker-compose(로컬 MySQL + API), AWS EC2 + RDS + S3(DEPLOYMENT.md)
 
 ---
 
+## TEAMMAKER (MWFC)
+
+MY WAY FUTSAL CLUB용 팀(조) 편성 웹 앱. 팀원 등록, 드래그 앤 드롭 또는 실력 기반 밸런스 랜덤 편성, 명단 복사·이미지 저장. 배포: https://mwfc-feature.vercel.app
+
+### 기술 스택
+
+React, TypeScript, Vite, styled-components, @dnd-kit, html-to-image, localStorage
+
+### 주요 기능
+
+- **팀원 CRUD** — 이름·실력(하~상) 추가, 카드 인라인 수정·삭제
+- **드래그 앤 드롭** — 대기 인원 ↔ 팀 이동, 팀 내 순서 변경
+- **밸런스 랜덤 조짜기** — 실력 합·인원 수 균형 자동 배정
+- **리스트 복사** — `1팀: 이름, 이름...` 클립보드 복사
+- **각 팀별 PNG 저장** — html-to-image로 이미지 다운로드
+- **localStorage** — 편성 담당자 단독 사용·결과 공유만 필요하다는 필요성에 따라, 서버·계정 없이 localStorage로 구현
+
+### 설계 의도 (localStorage)
+
+팀 편성은 **조장 한 명**만 하고, 결과는 **복사·PNG**로 채팅에 공유하면 되는 **필요성**에 따라, 서버·계정 없이 localStorage로 구현했습니다. 실시간 협업·DB 동기화가 필요 없어 인프라와 배포 부담을 최소화했습니다.
+
+### 사용 흐름
+
+1. 팀원 이름·실력 추가
+2. 팀 개수 설정 → 밸런스 랜덤 또는 DnD로 직접 편성
+3. 리스트 복사 또는 팀별 이미지 저장으로 공유
+
+---
+
 ## AI Portfolio
 
 경력·프로젝트 탐색과 AI Q&A를 하나의 Next.js 앱으로 통합한 개인 포트폴리오입니다. 2026년 3월, 기획부터 개발·배포까지 직접 진행했습니다.

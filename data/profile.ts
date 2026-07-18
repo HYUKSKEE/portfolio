@@ -402,6 +402,90 @@ export const profile = {
       github: "https://github.com/HYUKSKEE/hyuskskee_word",
     },
     {
+      slug: "teammaker-mwfc",
+      title: "TEAMMAKER (MWFC)",
+      period: "",
+      role: "기획 및 개발",
+      description: "MY WAY FUTSAL CLUB용 팀(조) 편성 웹 앱",
+      overview:
+        "풋살 동호회에서 매 경기마다 팀을 나누는 과정을 빠르게 처리하기 위해 만든 웹 앱입니다. 팀원을 등록하고 실력 등급(하~상)을 부여한 뒤, 드래그 앤 드롭으로 직접 편성하거나 밸런스 랜덤으로 자동 배정할 수 있습니다. 완성된 명단은 텍스트 복사 또는 팀별 PNG 이미지로 공유합니다. 팀 편성은 조장 한 명만 하고 결과는 채팅 공유로 충분하다는 필요성에 따라, 서버·계정 없이 localStorage로 구현했습니다.",
+      stack: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "styled-components",
+        "@dnd-kit",
+        "html-to-image",
+      ],
+      architecture: [
+        {
+          title: "UI & 상태",
+          description:
+            "`App.tsx`에서 팀원·팀 편성 상태를 관리. components/에 팀원 카드, 팀 컬럼, 컨트롤, 내보내기 UI를 분리해 화면별 책임을 나눴습니다.",
+        },
+        {
+          title: "드래그 앤 드롭",
+          description:
+            "@dnd-kit으로 대기 인원 ↔ 팀 이동, 팀 내 순서 변경을 지원. utils/에 DnD 충돌 감지 및 랜덤 배정 알고리즘을 분리했습니다.",
+        },
+        {
+          title: "밸런스 랜덤 조짜기",
+          description:
+            "실력 등급(하·중하·중·중상·상) 합과 인원 수를 고르게 맞춰 팀을 자동 배정. constants/에 등급 정의, utils/에 배정 로직.",
+        },
+        {
+          title: "내보내기 & 저장",
+          description:
+            "리스트 복사·PNG 다운로드로 결과를 바로 공유. 편성 담당자 단독 사용·결과 공유만 필요하다는 필요성에 따라, 서버·계정 없이 localStorage로 새로고침 대응까지 처리했습니다.",
+        },
+      ],
+      phases: [
+        {
+          title: "핵심 UX 구현",
+          description: "팀원 등록과 편성 UI를 먼저 완성했습니다.",
+          items: [
+            "팀원 CRUD — 이름·실력 인라인 수정",
+            "팀 개수 설정 및 팀 컬럼 UI",
+            "@dnd-kit 드래그 앤 드롭 편성",
+          ],
+        },
+        {
+          title: "밸런스 & 공유",
+          description: "자동 배정과 결과 공유 기능을 추가했습니다.",
+          items: [
+            "실력 합·인원 수 기반 밸런스 랜덤 조짜기",
+            "클립보드 리스트 복사, 팀별 PNG 이미지 저장",
+            "localStorage 데이터 유지",
+          ],
+        },
+        {
+          title: "배포",
+          description: "Vercel에 배포해 동호회에서 바로 사용할 수 있게 했습니다.",
+          items: [
+            "Vite 프로덕션 빌드",
+            "OG 이미지(public/mwfc-og.jpg) 설정",
+            "https://mwfc-feature.vercel.app 배포",
+          ],
+        },
+      ],
+      duties: [
+        "팀원·팀 편성 상태 관리 및 컴포넌트 구조 설계",
+        "@dnd-kit 기반 드래그 앤 드롭 UX 구현",
+        "실력 등급 기반 밸런스 랜덤 배정 알고리즘",
+        "html-to-image 팀별 PNG 내보내기, 클립보드 복사",
+        "localStorage 영속화 및 Vercel 배포",
+      ],
+      highlights: [
+        "드래그 앤 드롭 편성",
+        "실력 기반 밸런스 랜덤",
+        "PNG·텍스트 공유",
+        "localStorage",
+        "Vite + React",
+      ],
+      link: "https://mwfc-feature.vercel.app",
+      github: "",
+    },
+    {
       slug: "portfolio",
       title: "AI Portfolio",
       period: "2026.03",
