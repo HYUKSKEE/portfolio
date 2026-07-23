@@ -177,7 +177,7 @@ PaymentPage
 | 레이어 | 설명 |
 | --- | --- |
 | Expo Router + Feature Modules | `app/`은 라우팅만, `src/features/`에 도메인별 api/hooks/screens 배치 |
-| 상태 & API | React Query(서버 상태) + Zustand(팀·토큰), Hyukskee World API REST 통신 |
+| 상태 & API | React Query(서버 상태) + Zustand(팀·토큰), REST API 통신 |
 | 핵심 도메인 | teams, players, matches-registration, matches-participants, home |
 | 인증 | 전화번호+비밀번호(API), Google·Kakao·Naver·Apple 소셜 로그인 |
 
@@ -188,37 +188,6 @@ PaymentPage
 3. **Supabase & 배포** — DB 마이그레이션, Storage, EAS Build
 
 **설계 포인트:** Feature-Sliced Design · React Query + Zustand · 쿼터별 스코어 트래킹 · Supabase + REST API · Expo Development Build
-
----
-
-### Hyukskee World API
-
-**백엔드 개발** · 진행 중
-
-> MyFC 앱의 경기·선수·스코어·통계를 제공하는 FastAPI 서버
-
-**GitHub:** https://github.com/HYUKSKEE/hyuskskee_word
-
-축구·풋살 팀의 경기 기록, 선수 로스터, 쿼터별 골·도움, MOM, 리더보드를 REST API로 제공합니다. api → services → DB/Storage 3계층 구조.
-
-**기술 스택:** Python · FastAPI · SQLAlchemy · MySQL · JWT · Docker · AWS
-
-#### 구조 설계
-
-| 레이어 | 설명 |
-| --- | --- |
-| API Layer | auth, team, player, match, score, home REST 엔드포인트 |
-| Service Layer | 비즈니스 로직, 소셜 로그인, 리더보드 집계 |
-| Data Layer | SQLAlchemy ORM + MySQL (users → teams → matches → ...) |
-| Storage | 팀 로고·프로필·경기장·MOM 이미지 (local / S3) |
-
-#### 진행 과정
-
-1. **도메인 & API 설계** — Pydantic/SQLAlchemy, Swagger UI, 커스텀 예외 처리
-2. **핵심 API 구현** — JWT·소셜 로그인, 팀/선수/경기/스코어, 리더보드
-3. **배포 & 운영** — docker-compose, AWS EC2 + RDS + S3
-
-**설계 포인트:** FastAPI 3-Layer · JWT + 소셜 로그인 · MySQL 도메인 모델 · local/S3 Storage · Docker & AWS
 
 ---
 

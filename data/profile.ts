@@ -253,7 +253,7 @@ export const profile = {
         {
           title: "상태 & API",
           description:
-            "서버 상태는 React Query, 팀 선택·인증 토큰 등 cross-screen 상태만 Zustand. REST는 http-client로 Hyukskee World API와 통신하고, Supabase는 Storage·매치 공유 Edge Function에 활용합니다.",
+            "서버 상태는 React Query, 팀 선택·인증 토큰 등 cross-screen 상태만 Zustand. REST API(http-client)와 통신하고, Supabase는 Storage·매치 공유 Edge Function에 활용합니다.",
         },
         {
           title: "핵심 도메인",
@@ -263,7 +263,7 @@ export const profile = {
         {
           title: "인증",
           description:
-            "전화번호+비밀번호는 Hyukskee World API(/auth/login, /auth/signup), Google·Kakao·Naver·Apple은 네이티브 소셜 로그인(Development Build).",
+            "전화번호+비밀번호는 REST API(/auth/login, /auth/signup), Google·Kakao·Naver·Apple은 네이티브 소셜 로그인(Development Build).",
         },
       ],
       phases: [
@@ -311,95 +311,6 @@ export const profile = {
       ],
       link: "",
       github: "https://github.com/HYUKSKEE/MYFC_APP",
-    },
-    {
-      slug: "myfc-server",
-      title: "Hyukskee World API",
-      period: "진행 중",
-      role: "백엔드 개발",
-      description:
-        "MyFC 앱의 경기·선수·스코어·통계를 제공하는 FastAPI 서버",
-      overview:
-        "축구·풋살 팀의 경기 기록, 선수 로스터, 쿼터별 골·도움, MOM, 리더보드를 REST API로 제공하는 백엔드입니다. MyFC(Expo) 모바일 앱의 API 서버로 사용되며, api → services → DB/Storage 3계층 구조로 도메인 로직을 분리했습니다. JWT 인증, 팀 권한(owner/manager/member), 미디어 업로드(local/S3)까지 포함합니다.",
-      stack: [
-        "Python",
-        "FastAPI",
-        "SQLAlchemy",
-        "MySQL",
-        "JWT",
-        "Docker",
-        "AWS",
-      ],
-      architecture: [
-        {
-          title: "API Layer",
-          description:
-            "`app/api/` 라우터가 HTTP 요청을 수신하고 JWT 의존성을 주입한 뒤 서비스를 호출. auth, team, player, match, score, home 등 도메인별 엔드포인트로 구성.",
-        },
-        {
-          title: "Service Layer",
-          description:
-            "`app/services/`에서 비즈니스 규칙·DB 트랜잭션·파일 업로드를 처리. phone_auth, social_login(Google/Kakao/Naver/Apple), leaderboard 집계 등을 담당.",
-        },
-        {
-          title: "Data Layer",
-          description:
-            "SQLAlchemy ORM + MySQL 8.0. users → team_members → teams → players → matches → match_participants / match_goal_events / match_mom 관계 모델.",
-        },
-        {
-          title: "Storage",
-          description:
-            "팀 로고·선수 프로필·경기장·MOM 이미지를 local 디스크 또는 AWS S3(boto3)에 저장. `STORAGE_BACKEND` 환경 변수로 전환.",
-        },
-      ],
-      phases: [
-        {
-          title: "도메인 & API 설계",
-          description:
-            "MyFC 앱 화면 흐름에 맞춰 REST API 계약과 DB 스키마를 정의했습니다.",
-          items: [
-            "Pydantic 스키마, SQLAlchemy 모델, Enum(TeamRole, MatchType 등) 설계",
-            "Swagger UI(/docs) 기반 API 명세",
-            "커스텀 예외(404/403/409/400/401) → HTTP 변환",
-          ],
-        },
-        {
-          title: "핵심 API 구현",
-          description:
-            "인증·팀·선수·경기·스코어·홈 대시보드 도메인을 서비스 계층으로 구현",
-          items: [
-            "전화번호·소셜 로그인 + JWT(bcrypt, HS256) 발급",
-            "팀 CRUD, 선수 로스터, 경기 등록(multipart), 쿼터별 골·도움·MOM",
-            "홈 대시보드·리더보드(득점·도움·MOM·출전) 집계",
-          ],
-        },
-        {
-          title: "배포 & 운영",
-          description:
-            "Docker 로컬 개발과 AWS 운영 환경을 준비했습니다.",
-          items: [
-            "docker-compose(MySQL + FastAPI), 환경별 config(dev/test/prd)",
-            "미디어 S3 업로드, EC2 + RDS + S3 배포 가이드(DEPLOYMENT.md)",
-            "MyFC App 클라이언트 연동(EXPO_PUBLIC_API_BASE_URL)",
-          ],
-        },
-      ],
-      duties: [
-        "FastAPI 라우터·Pydantic 스키마·SQLAlchemy 모델 설계",
-        "JWT 인증 및 Google/Kakao/Naver/Apple 소셜 로그인 구현",
-        "팀 권한(owner/manager/member) 기반 API 접근 제어",
-        "쿼터별 스코어·리더보드 집계 비즈니스 로직",
-        "local/S3 미디어 Storage 백엔드 및 Docker·AWS 배포 구성",
-      ],
-      highlights: [
-        "FastAPI 3-Layer",
-        "JWT + 소셜 로그인",
-        "MySQL 도메인 모델",
-        "local / S3 Storage",
-        "Docker & AWS",
-      ],
-      link: "",
-      github: "https://github.com/HYUKSKEE/hyuskskee_word",
     },
     {
       slug: "teammaker-mwfc",

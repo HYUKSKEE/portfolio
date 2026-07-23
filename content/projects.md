@@ -6,7 +6,7 @@
 
 ### 기술 스택
 
-React Native 0.81 + Expo SDK 54, Expo Router 6, TypeScript, TanStack React Query, Zustand, React Native Paper, NativeWind, Supabase(Storage·Edge Functions). REST API는 Hyukskee World API(FastAPI)와 통신.
+React Native 0.81 + Expo SDK 54, Expo Router 6, TypeScript, TanStack React Query, Zustand, React Native Paper, NativeWind, Supabase(Storage·Edge Functions). REST API와 통신.
 
 ### 주요 기능
 
@@ -26,42 +26,6 @@ React Native 0.81 + Expo SDK 54, Expo Router 6, TypeScript, TanStack React Query
 ### 화면 흐름
 
 로그인 → 팀 선택/생성 → 홈 → 매치 목록·등록·스코어 입력·팀원 관리
-
----
-
-## Hyukskee World API
-
-MyFC(Expo) 앱의 API 서버. 축구·풋살 팀의 경기 기록, 선수 관리, 득점·도움·MOM 통계를 제공하는 FastAPI 백엔드. GitHub: https://github.com/HYUKSKEE/hyuskskee_word
-
-### 기술 스택
-
-Python 3.12+, FastAPI, Uvicorn, SQLAlchemy 2.x, MySQL 8.0, JWT(PyJWT), bcrypt, Docker, AWS S3(boto3)
-
-### 주요 기능
-
-- **인증** — 전화번호 회원가입/로그인, Google·Kakao·Naver·Apple 소셜 로그인, JWT(HS256)
-- **팀/선수** — 팀 CRUD, 로고 업로드, owner/manager/member 권한, 선수 로스터 CRUD
-- **경기/스코어** — 경기 등록(축구/풋살), 쿼터별 골·도움, 용병 참가, MOM 선정
-- **홈** — 최근 경기, MOM 기록, 리더보드(득점·도움·MOM·출전)
-
-### 아키텍처
-
-- **Client** → MyFC App(Expo) → HTTPS → FastAPI(Uvicorn)
-- **api/** — HTTP 라우터 (auth, team, player, match, score, home)
-- **services/** — 비즈니스 로직, DB 트랜잭션, Storage(local/S3)
-- **models/ + schemas/** — SQLAlchemy ORM, Pydantic 입출력 검증
-- 요청 흐름: Client → API Router → Service → MySQL / Storage
-
-### 주요 API
-
-- `/auth` — signup, login, `{provider}/login`
-- `/teams`, `/teams/{id}/players` — 팀·선수 CRUD
-- `/teams/{id}/matches`, `/matches/{id}/score` — 경기·스코어
-- `/teams/{id}/home`, `/leaderboard` — 홈·리더보드
-
-### 배포
-
-docker-compose(로컬 MySQL + API), AWS EC2 + RDS + S3(DEPLOYMENT.md)
 
 ---
 
