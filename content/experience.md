@@ -22,7 +22,7 @@
 
 해결: React Query 도입, Query Key 표준화, 캐싱 전략 수립, Suspense 적용.
 
-결과: 중복 API 요청 감소, 불필요한 렌더링 감소, Next.js 서버 CPU 사용률 약 20% 감소.
+결과: 중복 API 요청 감소, 불필요한 렌더링 감소, EC2(Next·API 공존) CPUUtilization 약 20% 감소.
 
 ## 크래프타 성과 3 - 빌드 최적화
 

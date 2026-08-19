@@ -94,7 +94,7 @@ Git · GitHub · Fork · Jira · Slack · Notion · Figma
 
 - **문제:** 동일 API를 여러 컴포넌트에서 반복 호출하여 불필요한 네트워크 요청과 렌더링 발생
 - **해결:** React Query 도입, Query Key 표준화, 캐싱 전략 수립, Suspense 적용
-- **결과:** 중복 API 요청 감소, 불필요한 렌더링 감소, Next.js 서버 CPU 사용률 약 20% 감소
+- **결과:** 중복 API 요청 감소, 불필요한 렌더링 감소, EC2(Next·API 공존) CPUUtilization 약 20% 감소
 
 **3. 빌드 최적화**
 
